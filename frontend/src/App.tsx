@@ -50,7 +50,7 @@ function App() {
       </main>
 
       <footer className="app-footer">
-        <p>&copy; 2024 Expense Tracker. Built with React + Node.js</p>
+        <p>&copy; 2026 Expense Tracker. Built with React + Node.js</p>
       </footer>
     </div>
   );
