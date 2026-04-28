@@ -1,0 +1,82 @@
+.expense-list {
+  background: white;
+  border-radius: 8px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.expense-list h2 {
+  margin: 0 0 20px 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+}
+
+.empty-message {
+  text-align: center;
+  color: #999;
+  padding: 40px 20px;
+  font-size: 14px;
+}
+
+.expenses-table-wrapper {
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+
+.expenses-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.expenses-table thead {
+  background-color: #f5f5f5;
+  border-bottom: 2px solid #ddd;
+}
+
+.expenses-table th {
+  padding: 12px;
+  text-align: left;
+  font-weight: 600;
+  color: #555;
+}
+
+.expenses-table td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+  color: #333;
+}
+
+.expenses-table tbody tr:hover {
+  background-color: #f9f9f9;
+}
+
+.expenses-table .amount {
+  font-weight: 600;
+  color: #2e7d32;
+}
+
+.expenses-table .description {
+  color: #777;
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.expense-total {
+  text-align: right;
+  font-size: 16px;
+  color: #333;
+  padding: 12px 0;
+  border-top: 2px solid #eee;
+}
+
+.loading {
+  text-align: center;
+  color: #999;
+  padding: 40px 20px;
+  font-size: 14px;
+}
