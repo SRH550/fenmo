@@ -235,19 +235,14 @@ Get expense summary by category
    npm install
    ```
 
-3. **Setup environment:**
-   ```bash
-   # Copy .env.example to .env (already created)
-   # .env already has defaults
-   ```
 
-4. **Setup Prisma database:**
+3. **Setup Prisma database:**
    ```bash
    npm run prisma:generate
    npm run prisma:migrate
    ```
 
-5. **Start development server:**
+4. **Start development server:**
    ```bash
    npm run dev
    ```
@@ -269,11 +264,11 @@ Get expense summary by category
    ```bash
    npm run dev
    ```
-   Frontend runs on `http://localhost:5173`
+   Frontend runs on `https://fenmo-blue.vercel.app`
 
 ### Using the Application
 
-1. Open `http://localhost:5173` in browser
+1. Open `https://fenmo-blue.vercel.app` in browser
 2. Fill the expense form:
    - Amount (in rupees)
    - Category (Food, Transport, etc.)
@@ -327,152 +322,6 @@ model IdempotencyKey {
 - **Trade-off**: No separate category table
 - **Future**: Add predefined categories in database for consistency
 
-### 5. Expense Deletion
-- **Current**: Not implemented
-- **Trade-off**: More suitable for audit trails (never delete, only mark deleted)
-- **Future**: Add soft deletes and update API
-
-## 🧪 Testing
-
-### Run Backend Tests (when implemented):
-```bash
-cd backend
-npm test
-```
-
-### Run Frontend Tests (when implemented):
-```bash
-cd frontend
-npm test
-```
-
-## 📦 Production Deployment
-
-### Backend Deployment on Render
-
-1. **Create Render Account**
-   - Go to https://render.com
-   - Sign up with GitHub
-   - Authorize Render to access your GitHub repos
-
-2. **Create Web Service**
-   - Click **New +** → **Web Service**
-   - Connect your GitHub repo (`fenmo`)
-   - Select the repo and authorize
-
-3. **Configure Deployment**
-   | Field | Value |
-   |-------|-------|
-   | **Name** | `fenmo-backend` |
-   | **Environment** | `Node` |
-   | **Region** | `Oregon` (or closest to you) |
-   | **Branch** | `main` |
-   | **Root Directory** | `backend` |
-   | **Build Command** | `npm install && npm run build && npm run prisma:generate && npm run prisma:migrate` |
-   | **Start Command** | `npm start` |
-
-4. **Set Environment Variables**
-   In Render dashboard → Environment:
-   ```
-   NODE_ENV=production
-   PORT=3000
-   DATABASE_URL=file:./prisma/prod.db
-   FRONTEND_URL=https://your-vercel-frontend-url.vercel.app
-   ```
-
-5. **Deploy**
-   - Click **Create Web Service**
-   - Render will automatically deploy
-   - Get your backend URL (e.g., `https://fenmo-backend.onrender.com`)
-
-### Frontend Deployment on Vercel
-
-1. **Update Frontend Environment**
-   - In Vercel dashboard → Settings → Environment Variables
-   - Add: `VITE_API_BASE_URL=https://your-render-backend-url.onrender.com`
-
-2. **Redeploy Frontend**
-   - Push changes to GitHub
-   - Vercel will auto-redeploy
-   - Your app is now fully deployed!
-
-### Alternative: Backend on Railway
-
-1. **Create Railway Account**
-   - Go to https://railway.app
-   - Sign up with GitHub
-
-2. **Create Project**
-   - Click "New Project"
-   - Select "Deploy from GitHub repo"
-   - Choose `fenmo` repo
-   - Select `backend` folder as root directory
-
-3. **Set Environment Variables**
-   ```
-   NODE_ENV=production
-   PORT=3000
-   DATABASE_URL=file:./prisma/prod.db
-   ```
-
-4. **Deploy**
-   - Railway will auto-deploy
-   - Get your backend URL
-
-## 🐛 Troubleshooting
-
-### "Cannot find module '@prisma/client'"
-```bash
-npm run prisma:generate
-```
-
-### "CORS error" on requests
-- Ensure backend is running on http://localhost:3000
-- Check CORS configuration in `backend/src/index.ts`
-
-### "Database connection failed"
-```bash
-# Reset database
-npm run prisma:reset
-npm run prisma:migrate
-```
-
-### Form not submitting
-1. Check browser console for errors
-2. Ensure backend API is running
-3. Verify Idempotency-Key header is being sent
-
-## 📈 Performance Optimizations
-
-1. **Database Indexes**
-   - Index on `date` field for sorting
-   - Index on `category` field for filtering
-   - Index on `Idempotency-Key.key` for cache lookup
-
-2. **Frontend Optimizations**
-   - Lazy load components if app grows
-   - Memoize filter calculations
-   - Use virtual scrolling for large lists
-
-3. **Backend Optimizations**
-   - Query pagination (not implemented, add if needed)
-   - Response compression
-   - Database connection pooling
-
-## 🔮 Future Enhancements
-
-- [ ] User authentication & authorization
-- [ ] Multiple users / shared expenses
-- [ ] Monthly budget setting and alerts
-- [ ] Expense export (CSV, PDF)
-- [ ] Charts and analytics
-- [ ] Recurring expenses
-- [ ] Mobile app (React Native)
-- [ ] Database migration to PostgreSQL for production
-- [ ] API documentation (Swagger/OpenAPI)
-- [ ] Comprehensive test suite
-
-## 📝 Notes
 
 ### Money Handling Philosophy
 This app treats money as integers (paise) to avoid floating-point arithmetic issues:
@@ -498,8 +347,6 @@ This structure makes the app:
 - Easy to extend (add new features without touching existing code)
 - Easy to understand (clear separation of concerns)
 
-## 📄 License
 
-MIT
 
 ---
