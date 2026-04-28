@@ -348,17 +348,76 @@ npm test
 
 ## 📦 Production Deployment
 
-### Backend
-1. Build: `npm run build`
-2. Use PostgreSQL instead of SQLite
-3. Set `NODE_ENV=production`
-4. Add rate limiting middleware
-5. Use environment variables for database URL
+### Backend Deployment on Render
 
-### Frontend
-1. Build: `npm run build`
-2. Deploy dist/ folder to static hosting (Vercel, Netlify, S3)
-3. Update API_BASE_URL to production backend
+1. **Create Render Account**
+   - Go to https://render.com
+   - Sign up with GitHub
+   - Authorize Render to access your GitHub repos
+
+2. **Create Web Service**
+   - Click **New +** → **Web Service**
+   - Connect your GitHub repo (`fenmo`)
+   - Select the repo and authorize
+
+3. **Configure Deployment**
+   | Field | Value |
+   |-------|-------|
+   | **Name** | `fenmo-backend` |
+   | **Environment** | `Node` |
+   | **Region** | `Oregon` (or closest to you) |
+   | **Branch** | `main` |
+   | **Root Directory** | `backend` |
+   | **Build Command** | `npm install && npm run build && npm run prisma:generate && npm run prisma:migrate` |
+   | **Start Command** | `npm start` |
+
+4. **Set Environment Variables**
+   In Render dashboard → Environment:
+   ```
+   NODE_ENV=production
+   PORT=3000
+   DATABASE_URL=file:./prisma/prod.db
+   FRONTEND_URL=https://your-vercel-frontend-url.vercel.app
+   ```
+
+5. **Deploy**
+   - Click **Create Web Service**
+   - Render will automatically deploy
+   - Get your backend URL (e.g., `https://fenmo-backend.onrender.com`)
+
+### Frontend Deployment on Vercel
+
+1. **Update Frontend Environment**
+   - In Vercel dashboard → Settings → Environment Variables
+   - Add: `VITE_API_BASE_URL=https://your-render-backend-url.onrender.com`
+
+2. **Redeploy Frontend**
+   - Push changes to GitHub
+   - Vercel will auto-redeploy
+   - Your app is now fully deployed!
+
+### Alternative: Backend on Railway
+
+1. **Create Railway Account**
+   - Go to https://railway.app
+   - Sign up with GitHub
+
+2. **Create Project**
+   - Click "New Project"
+   - Select "Deploy from GitHub repo"
+   - Choose `fenmo` repo
+   - Select `backend` folder as root directory
+
+3. **Set Environment Variables**
+   ```
+   NODE_ENV=production
+   PORT=3000
+   DATABASE_URL=file:./prisma/prod.db
+   ```
+
+4. **Deploy**
+   - Railway will auto-deploy
+   - Get your backend URL
 
 ## 🐛 Troubleshooting
 

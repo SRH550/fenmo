@@ -9,7 +9,8 @@ import {
   CategorySummary,
 } from '../types';
 
-const API_BASE_URL = 'http://localhost:3000';
+// Use environment variable or default to localhost for development
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
 
 /**
  * Hook for creating expenses with idempotency support
