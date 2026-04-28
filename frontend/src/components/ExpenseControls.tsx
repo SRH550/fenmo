@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useExpenses, fetchCategories } from '../hooks/useExpenses';
+import { useState, useEffect } from 'react';
+import { fetchCategories } from '../hooks/useExpenses';
 import '../styles/ExpenseControls.css';
 
 interface ExpenseControlsProps {
