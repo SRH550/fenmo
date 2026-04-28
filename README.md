@@ -503,7 +503,3 @@ This structure makes the app:
 MIT
 
 ---
-
-**Built with ❤️ by a Senior Full-Stack Engineer**
-
-For questions or issues, open a GitHub issue or contact support.

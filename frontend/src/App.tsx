@@ -40,8 +40,8 @@ function App() {
         <div className="container">
           <ExpenseForm onSuccess={handleExpenseAdded} />
 
-          <ExpenseControls 
-            onFilterChange={handleFilterChange} 
+          <ExpenseControls
+            onFilterChange={handleFilterChange}
             refreshTrigger={refreshTrigger}
           />
 
